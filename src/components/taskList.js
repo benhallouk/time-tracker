@@ -5,8 +5,19 @@ class TaskList extends Component {
 
   componentWillMount(){
     if(this.props.isAuthenticated){
-      //here to do the socket things
-      //this.props.token
+      //here to do the socket things and uses this path `ws://localhost:9000/endpoint?token=${this.props.token}`
+      
+      const webSocket = new WebSocket(`ws://localhost:9000/endpoint?token=${this.props.token}`, ["protocolOne", "protocolTwo"]);
+      webSocket.onopen = (event) => {
+       webSocket.send(JSON.stringify({type: 'queryTasks'}));
+      }
+
+      webSocket.onmessage = (event) => {        
+        this.setState(prevState => ({
+          tasks : JSON.parse(event.data)
+        }));
+      }
+
       this.setState(prevState => ({
         tasks : [1,2,3,4]
       }));
