@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
 .tasks button
 {
   width:100%;
