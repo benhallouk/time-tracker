@@ -5,9 +5,9 @@ class TaskList extends Component {
 
   componentWillMount(){
     if(this.props.isAuthenticated){
-      //here to do the socket things and uses this path `ws://localhost:9000/endpoint?token=${this.props.token}`
       
       const webSocket = new WebSocket(`ws://localhost:9000/endpoint?token=${this.props.token}`, ["protocolOne", "protocolTwo"]);
+      
       webSocket.onopen = (event) => {
        webSocket.send(JSON.stringify({type: 'queryTasks'}));
       }
@@ -19,7 +19,7 @@ class TaskList extends Component {
       }
 
       this.setState(prevState => ({
-        tasks : [1,2,3,4]
+        tasks : [1,2,3,4,5,6,7,8,9,10]
       }));
     }
   }
@@ -28,7 +28,13 @@ class TaskList extends Component {
     return (
       this.props.isAuthenticated ? 
       <div className="container">
-        {this.state.tasks.map(task => (<Task key={task} name={task} />))}
+        <div className="row">
+          <h2>Task list</h2>
+          <hr />
+        </div>
+        <div className="row tasks">
+          {this.state.tasks.map(task => (<Task key={task} name={task} />))}
+        </div>    
       </div>
       : null
     )
