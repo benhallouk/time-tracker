@@ -6,13 +6,8 @@ import TaskList from './components/taskList';
 
 class App extends Component {
   
-  constructor(props) {
-    super();
-    this.state = {
-      isAuthenticated: false
-    }
-
-    //here to do the socket things
+  state = {
+    isAuthenticated: false
   }
 
   authenticate = (credentials) => {
@@ -36,7 +31,7 @@ class App extends Component {
         <div>
           <Header onSubmit={this.authenticate} isAuthenticated={this.state.isAuthenticated} />
           <Banner />
-          { this.state.isAuthenticated ? <TaskList tasks={[1,2,3,4]} /> : null }
+          <TaskList isAuthenticated={this.state.isAuthenticated} token={this.state.token} />
         </div>
     );
   }
