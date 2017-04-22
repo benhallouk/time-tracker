@@ -13,16 +13,19 @@ class App extends Component {
   authenticate = (credentials) => {
     fetch('http://localhost:9000/login', {
         method: 'post',
-        body: credentials
+        headers: {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        },
+        body: `email=${credentials.email}&password=${credentials.password}`
     })
-    .then(function (response) {
-        const token = response.headers.get('token');
-        if(response.ok && token){
+    .then((response) => {
+        const token = response.headers.get('token');        
+        if(token){
           this.setState((prevState) => ({
             isAuthenticated: true,
             authenticationToken: token
           }));
-        } 
+        }
     });
   }
 
@@ -31,7 +34,7 @@ class App extends Component {
         <div>
           <Header onSubmit={this.authenticate} isAuthenticated={this.state.isAuthenticated} />
           <Banner />
-          <TaskList isAuthenticated={this.state.isAuthenticated} token={this.state.token} />
+          {this.state.isAuthenticated ? <TaskList token={this.state.authenticationToken} /> : null}
         </div>
     );
   }

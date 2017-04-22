@@ -9,9 +9,10 @@ class Header extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    const credentials  = new FormData();
-    credentials.append('email', this.state.email);
-    credentials.append('password', this.state.password);
+    const credentials  = {
+        email : this.state.email,
+        password : this.state.password
+    };
     this.props.onSubmit(credentials);
   }
 

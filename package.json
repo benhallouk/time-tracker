@@ -2,18 +2,43 @@
   "name": "time-tracker",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
+  "watch": {
+    "test": [
+      "/test/**/*js",
+      "/lib/**/*js"
+    ]
+  },
   "dependencies": {
+    "boom": "^4.3.1",
+    "handlebars": "^4.0.6",
+    "hapi": "^16.1.0",
+    "hapi-auth-basic": "^4.2.0",
+    "bcrypt": "^1.0.2",
+    "nes": "^6.4.2",
+    "inert": "^4.1.0",
+    "joi": "^10.3.1",
+    "mongoose": "^4.9.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "vision": "^4.1.1"
   },
   "devDependencies": {
+    "code": "^4.0.0",
+    "lab": "^13.0.1",
+    "nodemon": "^1.11.0",
+    "npm-watch": "^0.1.8",
+    "sinon": "^2.1.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "test-server": "lab -c",
+    "start-server": "nodemon .",
+    "watch-server": "npm-watch",
+    "start-ui": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test-ui": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
