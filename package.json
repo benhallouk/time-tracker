@@ -37,7 +37,7 @@
   },
   "scripts": {
     "test-server": "lab -c",
-    "start-server": "nodemon .",
+    "start": "nodemon .",
     "watch-server": "npm-watch",
     "start-ui": "react-scripts start",
     "build": "react-scripts build",
