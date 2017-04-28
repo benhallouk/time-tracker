@@ -1,4 +1,5 @@
 const Hapi = require('Hapi');
+const Inert = require('Inert');
 const Server = new Hapi.Server();
 var Basic = require('hapi-auth-basic');
 var Bcrypt = require('bcrypt');
@@ -10,7 +11,7 @@ Server.connection({
 });
 
 const Hoek = require('Hoek');
-Server.register([Basic,Nes], (err)=> {
+Server.register([Basic,Inert,Nes], (err)=> {
     Hoek.assert(!err, err);
 
     const users = {
@@ -21,7 +22,7 @@ Server.register([Basic,Nes], (err)=> {
             id: '2133d32a'
         }
     };
-
+    
     const validate = function (request, username, password, callback) {
 
         const user = users[username];
@@ -36,7 +37,7 @@ Server.register([Basic,Nes], (err)=> {
     };
 
     Server.auth.strategy('simple', 'basic', 'required', { validateFunc: validate });
-
+    
 });
 
 const indexRoute = require('./lib/routes/index.server.route');
