@@ -6,4 +6,4 @@ const Task = (props) => (
   </div>
 )
 
-export default Task;
+export default Task

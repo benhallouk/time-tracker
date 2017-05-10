@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Task from './task';
+import TaskContainer from '../containers/taskContainer';
 
 class TaskList extends Component {
 
@@ -13,7 +13,7 @@ class TaskList extends Component {
           <hr />
         </div>
         <div className="row tasks">
-          {this.props.tasks.map(task => (<Task key={task} name={task} />))}
+          {this.props.tasks.map(task => (<TaskContainer key={task} name={task} />))}
         </div>    
       </div>      
     )
